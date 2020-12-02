@@ -4,7 +4,7 @@
 # Day 1, part 1
 # https://adventofcode.com/2020/day/1
 
-data = list( open("data/input.txt", "r") )
+data = list( open("data/input1.txt", "r") )
 
 # for line1 in data:
 #     for line2 in data:
@@ -16,8 +16,8 @@ data = list( open("data/input.txt", "r") )
 #             print(number1, number2)
 #             print(number1 + number2)
 #             print(number1*number2)
-    
-    
+
+
 # Day 1, part 2
 for line1 in data:
     for line2 in data:
