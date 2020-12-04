@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # Advent of Code 2020
-# Day 2, part 1
+# Day 2, part 1 & 2
 # https://adventofcode.com/2020/day/2
 
 data = list( open("data/input2.txt", "r") )
