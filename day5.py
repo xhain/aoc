@@ -15,13 +15,10 @@ import numpy as np
 # Part 1 Solution
 seatIDs = []
 for line in list( open("data/input5.txt", "r") ):
-    seatIDs.append(
-        int(''.join([{'F': '0', 'L': '0', 'B': '1', 'R': '1'}[c] for c in line.rstrip()]), base=2)
-                     )
+    seatIDs.append(int(''.join([{'F': '0', 'L': '0', 'B': '1', 'R': '1'}[c] for c in line.rstrip()]), base=2))
 seatIDs.sort()
 print("/ part 1: ", seatIDs[-1])
     
 # Part 2 Solution
 myMask = np.where(np.diff(seatIDs + [seatIDs[-1]+1]) > 1, True, False)
-mySeat = np.max(np.array(seatIDs) * myMask + 1)
-print("/ part 2: ", mySeat)
+print("/ part 2: ", np.max(np.array(seatIDs) * myMask + 1))
