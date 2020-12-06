@@ -30,7 +30,7 @@ group, num_ppl = {}, 0
 for line in data:
     if len(line) > 0:
         num_ppl += 1
-        for char in [char for char in line]:
+        for char in line:
             if char not in group:
                 group[char] = 1
             else:
