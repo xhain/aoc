@@ -38,43 +38,42 @@ test2, test_ans2 = [
 
 # Part 1 Solution
 def get_bags(color, rules):
+    # All lines that contain our target color, if not in first position of string (inner)
     lines = [line for line in rules if color in line and line.index(color) != 0]
-    
     colorsTracker = []
     
     if len(lines) == 0:
         return []
     
     else: 
-        colors = [line[:line.index(" bags")] for line in lines]
-        colors = [color for color in colors if color not in colorsTracker]
+        colors = set([line[:line.index(" bags")] for line in lines])
         
         for color in colors:
             colorsTracker.append(color)
             bags = get_bags(color, rules)
             colorsTracker += bags
-        
-        uniqueColors = []
-        for color in colorsTracker:
-            if color not in uniqueColors:
-                uniqueColors.append(color)
-                
-    return uniqueColors
+     
+    return set(colorsTracker)
     
 
 # Part 2 Solution
 def get_count(color, rules):
+    # All lines that do contain our target color in the first position (outer)
     rule = ''.join(line for line in rules if line[:line.index(' bags')] == color)
     
-    if 'no' in rule:
+    # Terminate if rule contains "no other bags"
+    if 'no other bags' in rule:
         return 1
     
+    # Retrieve all types + amount as sliced list (count + adjective + color)
     rule = rule[rule.index('contain ')+len('contain '):].split()
     ans, i = 0, 0
+    
+    # Iterate over sliced list, retrieve amount of bags and color of bag
     while i < len(rule):
-        count = int(rule[i])
+        amount = int(rule[i])
         color = rule[i+1] +' '+ rule[i+2]
-        ans += count * get_count(color, rules)
+        ans += amount * get_count(color, rules)
         i += 4
     return ans + 1
 
