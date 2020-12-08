@@ -19,7 +19,7 @@ data = [line.rstrip() for line in list(open("data/input8.txt", "r"))]
 cmds = []
 for line in data:
     cmd, val = line.split(" ")
-    cmds.append([cmd, int(val), 0])
+    cmds.append([cmd, int(val)])
 
 def solve(cmds):
     accum, i = 0, 0
