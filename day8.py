@@ -9,7 +9,7 @@ Created on Tue Dec  8 17:52:17 2020
 
 # Advent of Code 2020
 # Day 8, part 1 & 2
-# https://adventofcode.com/2020/day/7
+# https://adventofcode.com/2020/day/8
 
 
 data = [line.rstrip() for line in list(open("data/input8.txt", "r"))]
