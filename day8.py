@@ -6,18 +6,6 @@ Created on Tue Dec  8 17:52:17 2020
 @author: max
 """
 
-def modify(instruction, idx):
-    global fixing
-    if not fixing:
-        if 'nop' in instruction and idx not in flipped['nop']:
-            fixing = True
-            flipped['nop'].add(idx)
-            return instruction.replace('nop', 'jmp')
-        if 'jmp' in instruction and idx not in flipped['jmp']:
-            fixing = True
-            flipped['jmp'].add(idx)
-            return instruction.replace('jmp', 'nop')
-    return instruction
 
 # Advent of Code 2020
 # Day 8, part 1 & 2
@@ -34,8 +22,7 @@ for line in data:
     cmds.append([cmd, int(val), 0])
 
 def solve(cmdsMod):
-    accum = 0
-    i = 0
+    accum, i = 0, 0
     run = True
     done = set()
     while run:
@@ -66,9 +53,8 @@ print("/ part 1: ", solve(cmds)[0])
 
 # Part 2 Solution
 for i in range(len(cmds)):
-    # This is a bit hacky :
-    # It doesn't check the inverse case, when swappign "nop" for "jmp"
-    # But that would merely be another 8 lines
+    
+    # Check jmp -> nop
     if cmds[i][0] == 'jmp':
         cmds[i][0] = 'nop'
         accum, done = solve(cmds) 
@@ -78,3 +64,12 @@ for i in range(len(cmds)):
         else:
             cmds[i][0] = 'jmp'
     
+    # Check nop -> jmp     
+    elif cmds[i][0] == 'nop':
+        cmds[i][0] = 'jmp'
+        accum, done = solve(cmds) 
+        if done:
+            print("/ part 2: ", accum)
+            break
+        else:
+            cmds[i][0] = 'nop'
