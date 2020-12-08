@@ -21,17 +21,17 @@ for line in data:
     cmd, val = line.split(" ")
     cmds.append([cmd, int(val), 0])
 
-def solve(cmdsMod):
+def solve(cmds):
     accum, i = 0, 0
     run = True
     done = set()
     while run:
         idx = i
         
-        if idx >= len(cmdsMod):
+        if idx >= len(cmds):
             return accum, True
         
-        cmd = cmdsMod[idx]
+        cmd = cmds[idx]
         if idx not in done:
             if cmd[0] == "acc":
                 accum += cmd[1]
@@ -47,7 +47,7 @@ def solve(cmdsMod):
             run = False
         
     return accum, False
-        
+
 print("/ part 1: ", solve(cmds)[0])
 
 
