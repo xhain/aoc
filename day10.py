@@ -32,7 +32,7 @@ for line in diff:
 print("/ part 1: ", c1 * c3)
 
 
-# Part 2 solution
+# Part 2 solution (via Jonathan Paulson)
 tracker = {}
 def get_amount_for_idx(idx):
     if idx == len(data)-1:
