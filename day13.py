@@ -42,68 +42,47 @@ print("/ part 1: ", solve_p1())
 # Part 2 solution
 # solution = for_all(c = n * option + offset) == True
 
-def factorization(n):
-    factors = []
-    def get_factor(n):
-        x_fixed = 2
-        cycle_size = 2
-        x = 2
-        factor = 1
+def list_product(l):
+    ret = 1
+    for x in l:
+        ret *= x
+    return ret
 
-        while factor == 1:
-            for count in range(cycle_size):
-                if factor > 1: break
-                x = (x * x + 1) % n
-                factor = gcd(x - x_fixed, n)
-
-            cycle_size *= 2
-            x_fixed = x
-
-        return factor
-
-    while n > 1:
-        next = get_factor(n)
-        factors.append(next)
-        n //= next
-
-    return factors
-
-
-def multiplyList(myList) :
-     
-    # Multiply elements one by one
-    result = 1
-    for l in myList:
-        for x in l:
-            result = result * x 
-    return result 
+def egcd(a, b):
+    if a == 0:
+        return (b, 0, 1)
+    else:
+        gcd, r, s = egcd(b % a, a)
+        return (gcd, s - (b // a) * r, r)   
 
 # Get candidates and delay deltas
 d = 0
-options, offsets, factors = list(), list(), list()
+options, offsets = list(), list()
 for char in notes:
         if not char == "x":
             options.append(int(char))
-            offsets.append(d)
-            factors.append(factorization(int(char)))
+            offsets.append(-d)
         d += 1
-        
-first_common_product = multiplyList(factors)
+
+# Apply chinese remainder theorem
+LCM = list_product(options)
+N = [LCM / bus for bus in options]
+M = [egcd(N[i], options[i])[1] for i in range(len(options))]
+t = sum([int(offsets[i] * M[i] * N[i]) for i in range(len(options))]) % LCM
+print("/ part 2: ", t)
 
 
 # BRUTE FORCE >_<
 # result = 0
-# y = 836856048822287
+# 100000000000000, 836856048822287
 # while True:
 #     checksum = 0
 #     for n, d in zip(options, offsets):
 #         if (y + d) % n == 0:
-#             checksum += 1
-    
+#             checksum += 1 
 #     if checksum == 9:
 #         print(y)
 #         break
 #     else:
 #         y += 1
-                  
-        
+                          
