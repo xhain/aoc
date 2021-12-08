@@ -16,7 +16,6 @@ data = load_data('data/day08.txt')
 num_segments = [2, 3, 4, 7]
 counter = 0
 sumo = 0
-clear_number = 0
 
 def get_diff(first, second):
     first_set, second_set = set(first), set(second)
@@ -68,7 +67,6 @@ for line in data:
                 codes[0] = segment
     
     inverse_codes = {value: str(key) for key, value in codes.items()}
-    clear_number += sum([1 for digit in splitted_digits if inverse_codes[digit] in ['1', '4', '7', '8']])
     sumo += int(''.join([inverse_codes[digit] for digit in splitted_digits]))
 
 print(f'>> Day 8 / Part 1: {counter}')
