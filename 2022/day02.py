@@ -56,7 +56,7 @@ for row in data:
     result += score
     #print(f"Elve {P1} vs. {P2} Me  >> {res} >> {score} >> {result}")
 
-print(f">> Day 1 / Part 1 Solution: {result}")
+print(f">> Day 2 / Part 1 Solution: {result}")
 
 
 # Day 2 / Part 2
@@ -111,4 +111,4 @@ for row in data:
     P1 = lookup[P1]
     result += evaluate_day2(P1, P2)
 
-print(f">> Day 1 / Part 2 Solution: {result}")
+print(f">> Day 2 / Part 2 Solution: {result}")

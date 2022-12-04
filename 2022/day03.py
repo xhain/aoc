@@ -13,7 +13,7 @@ for line in data:
     equal_char = list(C1.intersection(C2))[0]
     result += chars.index(equal_char) + 1
 
-print(f">> Day 1 / Part 1 Solution: {result}")
+print(f">> Day 3 / Part 1 Solution: {result}")
 
 
 # Day 2 / Part 2
@@ -24,4 +24,4 @@ for idx in range(0, len(data), groupsize):
     common_item = group[0] & group[1] & group[2]
     result += chars.index(list(common_item)[0]) + 1
 
-print(f">> Day 1 / Part 2 Solution: {result}")
+print(f">> Day 3 / Part 2 Solution: {result}")
