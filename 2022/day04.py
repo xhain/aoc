@@ -9,11 +9,11 @@ data = load_data("data/day04.txt")
 result = 0
 for line in data:
     a, b = line.split(',')
-    a1, a2 = map(int, a.split('-'))
-    b1, b2 = map(int, b.split('-'))
-    if (a1 >= b1) and (a2 <= b2):
+    min1, max1 = map(int, a.split('-'))
+    min2, max2 = map(int, b.split('-'))
+    if (min1 >= min2) and (max1 <= max2):
         result += 1
-    elif (a1 <= b1) and (a2 >= b2):
+    elif (min1 <= min2) and (max1 >= max2):
         result += 1
 
 print(f">> Day 4 / Part 1 Solution: {result}")
@@ -21,5 +21,11 @@ print(f">> Day 4 / Part 1 Solution: {result}")
 
 # Day 4 / Part 2
 result = 0
+for line in data:
+    a, b = line.split(',')
+    min1, max1 = map(int, a.split('-'))
+    min2, max2 = map(int, b.split('-'))
+    if min2 <= max1 and min1 <= max2:
+        result += 1
 
 print(f">> Day 4 / Part 2 Solution: {result}")
