@@ -3,7 +3,7 @@
 def load_data(path):
     return list( open(path, "r") )
 
-# Day 5 / Part 1
+# Day 6 / Part 1
 data = load_data("data/day06.txt")
 
 def find_start(data, num_chars=4):
